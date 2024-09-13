@@ -1,6 +1,7 @@
 {
   "name": "nityanand",
   "version": "1.0.0",
+  "homepage": "https://github.com/Nityanand7/mywebsite.git",
   "description": "",
   "main": "src/index.js",
   "scripts": {
