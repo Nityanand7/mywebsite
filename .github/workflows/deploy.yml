@@ -1,0 +1,36 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js (if needed for build tools)
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'  # Use the Node.js version needed for your build tools
+
+      - name: Build project (if applicable)
+        run: |
+          # Add any build commands here if needed
+          # For example: npm install && npm run build
+
+      - name: Move files from public to root
+        run: |
+          mkdir -p public-root
+          cp -r public/* public-root/
+          mv public-root/* .
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: . # Deploy from the root directory.
+
